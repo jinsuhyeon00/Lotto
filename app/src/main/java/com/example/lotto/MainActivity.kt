@@ -19,5 +19,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.nameCard).setOnClickListener {
             startActivity(Intent(this,NameActivity::class.java))
         }
+        findViewById<View>(R.id.ResultCard).setOnClickListener {
+            startActivity(Intent(this,ResultActivity::class.java))
+        }
     }
 }
