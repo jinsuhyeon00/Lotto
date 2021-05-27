@@ -3,22 +3,23 @@ package com.example.lotto
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 
 class ResultActivity : AppCompatActivity() {
-
+    //    val imageView1id = R.id.imageView1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
-
-        Toast.makeText(this,"Result Activity", Toast.LENGTH_LONG).show()
-
-
-        val result = intent.getIntegerArrayListExtra("result")
-
+        val result = intent.getIntegerArrayListExtra("result")// ?: return // ?: return
+        //        // 2) sort the array
+//        result.sort()
+//        val result_sorted = result?.sortedBy{it}
         val result_sorted = result?.sorted()
+////        val result_sorted = result?.let { result.sortedBy{it} }
 
-        val lottoBallImageStartId = R.drawable.ball_01
+//        result?.let{
+//            updateLottoBallImages(result.sortedBy{it})
+//        }
+        val lottoBallImageStartId = R.drawable.ball_01 // 146
 /*        val lottoBallImageId2 = R.drawable.ball_02 // 150
         val lottoBallImageId3 = R.drawable.ball_03 // 148*/
         val imageView1 = findViewById<ImageView>(R.id.imageView1)
@@ -34,7 +35,6 @@ class ResultActivity : AppCompatActivity() {
         imageView4.setImageResource(lottoBallImageStartId + result_sorted[3] - 1)
         imageView5.setImageResource(lottoBallImageStartId + result_sorted[4] - 1)
         imageView6.setImageResource(lottoBallImageStartId + result_sorted[5] - 1)
-
     }
     private fun updateLottoBallImages(result_sorted : List<Int>) {
         val lottoImageStartId = R.drawable.ball_01

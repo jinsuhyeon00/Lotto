@@ -4,52 +4,67 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.example.lotto.ConstellationActivity
+import com.example.lotto.NameActivity
+import com.example.lotto.R
+import com.example.lotto.ResultActivity
 import java.util.*
+import java.util.jar.Attributes
 import kotlin.collections.ArrayList
 
 fun getRandomLottoNumber () : Int{
     return Random().nextInt(45)+1
 }
+/*fun getRandomLottoNumbers (): MutableList<Int>{
+    val lottoNumbers = mutableListOf<Int>()
 
+    while(true) {
+        val number = getRandomLottoNumber()
+        var flag_exist = 0
+
+        if (lottoNumbers.size < 1) {
+            lottoNumbers.add(number)
+            continue
+        }
+        else {
+            for (j in 0..lottoNumbers.size-1) {
+                if (number == lottoNumbers[j]) {
+                    flag_exist = 1
+                    break
+                }
+            }
+            if (flag_exist == 0)
+                lottoNumbers.add(number)
+            if (lottoNumbers.size >= 6)
+                break
+        }
+    }
+    return lottoNumbers
+}*/
 
 fun getRandomLottoNumbers(): MutableList<Int> {
+
     val lottoNumbers = mutableListOf<Int>()
-/*
-for (i in 1..6) {
-    var number = 0
-    do {
-        number = getRandomLottoNumber()
-    } while (lottoNumbers.contains(number))
-    lottoNumbers.add(number)
-}
-return lottoNumbers
-}
-*/
 
-while(true){
-    val number = getRandomLottoNumber()
-    var flag_exist = 0
-
-    if(lottoNumbers.size < 1){
+    for (i in 1..6) {
+        var number = 0
+        do {
+            number = getRandomLottoNumber()
+        } while (lottoNumbers.contains(number))
         lottoNumbers.add(number)
-        continue
     }
-    else {
-        for (j in 0 until lottoNumbers.size) {
-            if (number == lottoNumbers[j]) {
-                flag_exist = 1
-                break
-            }
-        }
-        if (flag_exist == 0)
-            lottoNumbers.add(number)
-        if (lottoNumbers.size >= 6)
-            break
-    }
+    return lottoNumbers
 }
-return lottoNumbers
+fun getShuffledLottoNumbers () : MutableList<Int> {
+    val lottoNumbers = mutableListOf<Int>()
+
+    for (number in 1..45) {
+        lottoNumbers.add(number)
+    }
+    lottoNumbers.shuffle()
+
+    return lottoNumbers.subList(0, 6)
 }
 
 class MainActivity : AppCompatActivity() {
@@ -57,21 +72,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(this, "Main Activity", Toast.LENGTH_LONG).show()
-
         val cardRandom = findViewById<CardView>(R.id.cardRandom)
         cardRandom.setOnClickListener {
             val intent = Intent(this, ResultActivity::class.java)
             intent.putIntegerArrayListExtra("result", ArrayList(getRandomLottoNumbers()))
-            startActivity(Intent(this, ResultActivity::class.java))
-
+            startActivity(intent)
         }
-        findViewById<View>(R.id.cardConstell).setOnClickListener {
+        val cardConstellation = findViewById<CardView>(R.id.cardConstell)
+        cardConstellation.setOnClickListener {
             startActivity(Intent(this, ConstellationActivity::class.java))
         }
-        findViewById<View>(R.id.cardName).setOnClickListener {
+        val cardName = findViewById<CardView>(R.id.cardName)
+        cardName.setOnClickListener {
             startActivity(Intent(this, NameActivity::class.java))
         }
-
     }
 }

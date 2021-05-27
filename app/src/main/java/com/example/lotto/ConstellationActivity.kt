@@ -10,7 +10,7 @@ class ConstellationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_constellation)
 
-       val btnGoResultConstell = findViewById<Button>(R.id.btnGoResultConstell)
+       val btnGoResultConstell = findViewById<Button>(R.id.btnGoResultName)
         btnGoResultConstell.setOnClickListener {
             startActivity(Intent(this,ResultActivity::class.java))
         }
