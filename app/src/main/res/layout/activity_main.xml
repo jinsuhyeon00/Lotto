@@ -100,6 +100,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_weight="1.0"
                     android:gravity="center|top"
+                    android:name ="text4"
                     android:text="별자리 기반 숫자 생성" />
             </LinearLayout>
 

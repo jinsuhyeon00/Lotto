@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lotto</string>
+    <string name="textview4">Constellation-based number generation</string>
+
 </resources>
